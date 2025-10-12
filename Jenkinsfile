@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs 'node24.10.0'      // This name must match what you configured in Jenkins
+                   // Optional: add JDK if needed
+    }
     stages {
         stage('Login') {
             steps {
