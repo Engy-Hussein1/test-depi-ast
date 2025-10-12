@@ -5,7 +5,7 @@ pipeline {
         stage('Login') {
             steps {
                 sh """
-                    echo "Logging in to system..."
+                    npm -v
                   
                 """
             }
