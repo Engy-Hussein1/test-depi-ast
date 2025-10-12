@@ -24,16 +24,21 @@ pipeline {
             }
         }
 
-        stage('push image ') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-cerd', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                sh """
-                    docker login -u $DOCKER_USER  -p  $DOCKER_PASS
-                   
-                """
-                }
-            }
+      stage('Push Docker Image') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-creds',  // <-- ID of your DockerHub credentials in Jenkins
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+            sh '''
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                docker push docker.io/engy11/ast-test1:v1
+            '''
         }
+    }
+}
+
     }
 
    
