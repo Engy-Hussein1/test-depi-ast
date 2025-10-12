@@ -17,7 +17,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                    docker build docker.io/engy11/ast-test1:v1
+                    docker build -t docker.io/engy11/ast-test1:v1 .
+
                     
                 """
             }
