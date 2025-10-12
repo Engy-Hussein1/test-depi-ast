@@ -5,7 +5,7 @@ pipeline {
                    // Optional: add JDK if needed
     }
     stages {
-        stage('Login') {
+        stage('build npm ') {
             steps {
                 sh """
                     npm -v
@@ -17,20 +17,20 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                    echo "Building the project..."
-                   
+                    docker build docker.io/engy11/ast-test1:v1
+                    
                 """
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh """
-                    echo "Deploying the project..."
+        // stage('push image ') {
+        //     steps {
+        //         sh """
+        //             docker login -u  engy11  -p 
                    
-                """
-            }
-        }
+        //         """
+        //     }
+        // }
     }
 
    
